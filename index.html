@@ -120,31 +120,32 @@
     <summary>하루 일과</summary>
     <div class="day">
       <dl>
-        <dt>06:00</dt><dd class="mark">기상</dd>
-        <dt>06:10</dt><dd class="mark">러닝 <small>웨이트한 날 20분 / 그 외 35분</small></dd>
-        <dt>06:50</dt><dd>샤워</dd>
-        <dt>07:00</dt><dd class="mark">식사 <small>단백질 30g</small></dd>
-        <dt>07:30</dt><dd class="mark">출근·장전 전략</dd>
-        <dt>08:10</dt><dd>회의</dd>
-        <dt>08:50</dt><dd>개장 준비</dd>
-        <dt>09:00</dt><dd>트레이딩</dd>
-        <dt>09:50</dt><dd>간식</dd>
-        <dt>10:00</dt><dd>오늘의 세미나</dd>
-        <dt>11:00</dt><dd>간식</dd>
-        <dt>11:30</dt><dd class="mark">웨이트 <small>화·목</small></dd>
-        <dt>12:30</dt><dd>식사</dd>
-        <dt>13:30</dt><dd>세미나 또는 리포트 작성</dd>
-        <dt>14:30</dt><dd>트레이딩 · 간식</dd>
-        <dt>15:00</dt><dd>마감 시황 · 명일 계획</dd>
-        <dt>15:40</dt><dd>주요 이슈 정리 · 마감</dd>
-        <dt>16:00</dt><dd>간식</dd>
-        <dt>16:30</dt><dd class="mark">웨이트 <small>월·수·금</small></dd>
-        <dt>18:00</dt><dd>저녁</dd>
-        <dt>19:00</dt><dd>산책 또는 영화</dd>
-        <dt>20:00</dt><dd class="mark">해외 주식 공부·정리</dd>
-        <dt>21:00</dt><dd class="mark">독서</dd>
-        <dt>22:00</dt><dd>취침 준비</dd>
-        <dt>22:30</dt><dd class="mark">취침</dd>
+        <dt>06:00</dt><dd class="mark">기상·준비 <small>10분</small></dd>
+        <dt>06:10</dt><dd class="mark">러닝 <small>30분 · 웨이트한 날 20분</small></dd>
+        <dt>06:40</dt><dd>복귀·정리 · 샤워 <small>20분</small></dd>
+        <dt>07:00</dt><dd class="mark">식사 <small>30분 · 단백질 30g</small></dd>
+        <dt>07:30</dt><dd class="mark">출근·장전 전략 <small>40분</small></dd>
+        <dt>08:10</dt><dd>회의 <small>40분</small></dd>
+        <dt>08:50</dt><dd>개장 준비 <small>10분</small></dd>
+        <dt>09:00</dt><dd>트레이딩 <small>50분</small></dd>
+        <dt>09:50</dt><dd>간식 <small>10분</small></dd>
+        <dt>10:00</dt><dd>오늘의 세미나 <small>60분</small></dd>
+        <dt>11:00</dt><dd>간식 <small>30분</small></dd>
+        <dt>11:30</dt><dd class="mark">웨이트 <small>화·목 · 60분</small></dd>
+        <dt>12:30</dt><dd>식사 <small>60분</small></dd>
+        <dt>13:30</dt><dd>세미나 또는 리포트 <small>60분</small></dd>
+        <dt>14:30</dt><dd>트레이딩·간식 <small>30분</small></dd>
+        <dt>15:00</dt><dd>마감 시황·명일 계획 <small>40분</small></dd>
+        <dt>15:40</dt><dd>이슈 정리·마감 <small>20분</small></dd>
+        <dt>16:00</dt><dd>간식·이동 <small>30분</small></dd>
+        <dt>16:30</dt><dd class="mark">웨이트 <small>월·수·금 · 60분</small></dd>
+        <dt>17:30</dt><dd>이동 <small>30분</small></dd>
+        <dt>18:00</dt><dd>저녁 <small>60분</small></dd>
+        <dt>19:00</dt><dd>산책 또는 영화 <small>30분</small></dd>
+        <dt>19:30</dt><dd class="mark">해외 주식 공부·정리 <small>60분</small></dd>
+        <dt>20:30</dt><dd class="mark">독서 <small>60분</small></dd>
+        <dt>21:30</dt><dd>취침 준비 <small>30분</small></dd>
+        <dt>22:00</dt><dd class="mark">취침 <small>8시간</small></dd>
       </dl>
     </div>
   </details>
@@ -175,14 +176,14 @@
 const DAYS=["월","화","수","목","금","토","일"];
 // req: 0 = 해당 없음, 1 = 필수, 2 = 선택(점선)
 const ROWS=[
-  {k:"sleep",n:"22:30 취침",s:"22:00 취침 준비",req:[1,1,1,1,1,1,1]},
+  {k:"sleep",n:"22:00 취침",s:"21:30 취침 준비 · 8시간",req:[1,1,1,1,1,1,1]},
   {k:"wake", n:"06:00 기상",s:"",req:[1,1,1,1,1,1,1]},
   {k:"run",  n:"아침 러닝",s:"06:10 · 웨이트한 날 20분 / 그 외 35분",req:[1,1,1,1,1,2,0]},
   {k:"pro",  n:"아침 단백질 30g",s:"07:00 식사",req:[1,1,1,1,1,1,1]},
   {k:"desk", n:"07:30 출근·장전 전략",s:"",req:[1,1,1,1,1,0,0]},
   {k:"lift", n:"웨이트",s:"월·수·금 16:30 / 화·목 11:30",req:[2,2,2,2,2,2,0],cap:3},
-  {k:"gstk", n:"해외 주식 공부·정리",s:"20:00",req:[1,1,1,1,1,0,0]},
-  {k:"read", n:"21:00 독서",s:"",req:[1,1,1,1,1,1,1]}
+  {k:"gstk", n:"해외 주식 공부·정리",s:"19:30",req:[1,1,1,1,1,0,0]},
+  {k:"read", n:"20:30 독서",s:"",req:[1,1,1,1,1,1,1]}
 ];
 const METRICS=[
   {k:"wt",n:"체중",u:"kg",dir:0},
