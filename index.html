@@ -40,17 +40,18 @@
 
   table{width:100%;border-collapse:collapse}
   thead th{font-size:12px;font-weight:500;color:var(--soft);padding:10px 0 4px;text-align:center}
-  thead th.lbl{text-align:left;padding-left:16px;width:31%}
+  thead th.lbl{text-align:left;padding-left:16px;width:34%}
   thead th.today{color:var(--brass);font-weight:700}
   tbody tr{border-top:1px solid var(--line)}
   td.lbl{padding:4px 6px 4px 16px;font-size:13px;line-height:1.3}
   td.lbl em{display:block;font-style:normal;font-size:11px;color:var(--faint);margin-top:1px}
+  td.lbl em b{font-weight:600;color:var(--soft)}
   td.cell{text-align:center;padding:0}
   td.todaycol{background:rgba(156,116,18,.07)}
 
-  .tap{display:block;width:100%;min-height:46px;background:none;border:0;padding:0;cursor:pointer}
+  .tap{display:block;width:100%;min-height:44px;background:none;border:0;padding:0;cursor:pointer}
   .tap:focus-visible{outline:2px solid var(--brass);outline-offset:-3px}
-  .sq{display:inline-block;width:24px;height:24px;border:1px solid var(--line);
+  .sq{display:inline-block;width:23px;height:23px;border:1px solid var(--line);
     border-radius:3px;background:var(--card);transition:background .1s}
   .tap.on .sq{background:var(--hit);border-color:var(--hit)}
   .tap.opt .sq{border-style:dashed}
@@ -70,6 +71,18 @@
   .delta{text-align:right;color:var(--soft);font-size:12.5px}
   .delta.up{color:var(--hit);font-weight:600}
 
+  details{border-top:1px solid var(--line)}
+  summary{padding:14px 16px;font-size:13px;font-weight:650;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"펼치기";float:right;font-weight:400;font-size:11.5px;color:var(--soft)}
+  details[open] summary::after{content:"접기"}
+  .day{padding:0 16px 16px}
+  .day dl{display:grid;grid-template-columns:58px 1fr;margin:0;font-size:12.5px;line-height:1.45}
+  .day dt{color:var(--soft);padding:5px 0;border-top:1px solid var(--line);font-feature-settings:"tnum" 1}
+  .day dd{margin:0;padding:5px 0;border-top:1px solid var(--line)}
+  .day dd.mark{color:var(--hit);font-weight:600}
+  .day dd small{color:var(--faint);font-weight:400}
+
   footer{border-top:1px solid var(--line);padding:14px 16px 22px;font-size:11.5px;
     color:var(--soft);line-height:1.6}
   .tools{margin-top:12px;display:flex;gap:8px}
@@ -78,9 +91,9 @@
   .tools button:active{background:var(--paper)}
   #status{padding:8px 16px 0;font-size:11.5px;color:var(--brass);min-height:18px}
   @media (max-width:400px){
-    thead th.lbl{width:29%}
+    thead th.lbl{width:31%}
     td.lbl{padding-left:12px;font-size:12px}
-    .sq{width:22px;height:22px}
+    .sq{width:21px;height:21px}
     .grid{grid-template-columns:1fr 66px 66px 46px}
     .grid input{width:60px}
   }
@@ -95,13 +108,46 @@
       <button id="next" aria-label="다음 주">›</button>
       <div class="range"><span id="range"></span><small id="wklabel"></small></div>
     </div>
-    <div class="score"><b id="done">0</b><span>/34</span><small>주간 이행</small></div>
+    <div class="score"><b id="done">0</b><span>/46</span><small>주간 이행</small></div>
   </header>
 
   <table>
     <thead><tr id="head"></tr></thead>
     <tbody id="body"></tbody>
   </table>
+
+  <details>
+    <summary>하루 일과</summary>
+    <div class="day">
+      <dl>
+        <dt>06:00</dt><dd class="mark">기상</dd>
+        <dt>06:10</dt><dd class="mark">러닝 <small>웨이트한 날 20분 / 그 외 35분</small></dd>
+        <dt>06:50</dt><dd>샤워</dd>
+        <dt>07:00</dt><dd class="mark">식사 <small>단백질 30g</small></dd>
+        <dt>07:30</dt><dd class="mark">출근·장전 전략</dd>
+        <dt>08:10</dt><dd>회의</dd>
+        <dt>08:50</dt><dd>개장 준비</dd>
+        <dt>09:00</dt><dd>트레이딩</dd>
+        <dt>09:50</dt><dd>간식</dd>
+        <dt>10:00</dt><dd>오늘의 세미나</dd>
+        <dt>11:00</dt><dd>간식</dd>
+        <dt>11:30</dt><dd class="mark">웨이트 <small>화·목</small></dd>
+        <dt>12:30</dt><dd>식사</dd>
+        <dt>13:30</dt><dd>세미나 또는 리포트 작성</dd>
+        <dt>14:30</dt><dd>트레이딩 · 간식</dd>
+        <dt>15:00</dt><dd>마감 시황 · 명일 계획</dd>
+        <dt>15:40</dt><dd>주요 이슈 정리 · 마감</dd>
+        <dt>16:00</dt><dd>간식</dd>
+        <dt>16:30</dt><dd class="mark">웨이트 <small>월·수·금</small></dd>
+        <dt>18:00</dt><dd>저녁</dd>
+        <dt>19:00</dt><dd>산책 또는 영화</dd>
+        <dt>20:00</dt><dd class="mark">해외 주식 공부·정리</dd>
+        <dt>21:00</dt><dd class="mark">독서</dd>
+        <dt>22:00</dt><dd>취침 준비</dd>
+        <dt>22:30</dt><dd class="mark">취침</dd>
+      </dl>
+    </div>
+  </details>
 
   <section>
     <h2>기준값과 현재값</h2>
@@ -113,7 +159,9 @@
   </section>
 
   <footer>
-    실선 칸은 필수, 점선 칸은 선택입니다. 웨이트는 월·수·금 3회가 기준이고, 하나를 놓치면 토요일 칸으로 이월합니다. 주간 34칸 = 취침 7 + 기상 7 + 러닝 5 + 단백질 7 + 출근 5 + 웨이트 3.
+    실선 칸은 매일 필수, 점선 칸은 선택입니다. 웨이트는 월·수·금 16:30과 화·목 11:30, 토요일까지 여섯 슬롯 중 <b>주 3회</b>를 채우면 달성입니다. 점심 약속으로 오전이 빠지면 다른 슬롯으로 메우면 됩니다.
+    <br><br>
+    주간 46칸 = 취침 7 + 기상 7 + 러닝 5 + 단백질 7 + 출근 5 + 웨이트 3 + 해외주식 5 + 독서 7.
     <div class="tools">
       <button id="exp">기록 내보내기</button>
       <button id="imp">기록 불러오기</button>
@@ -125,13 +173,16 @@
 
 <script>
 const DAYS=["월","화","수","목","금","토","일"];
+// req: 0 = 해당 없음, 1 = 필수, 2 = 선택(점선)
 const ROWS=[
-  {k:"sleep",n:"22:00 취침",s:"전날 밤 기준",req:[1,1,1,1,1,1,1]},
+  {k:"sleep",n:"22:30 취침",s:"22:00 취침 준비",req:[1,1,1,1,1,1,1]},
   {k:"wake", n:"06:00 기상",s:"",req:[1,1,1,1,1,1,1]},
-  {k:"run",  n:"아침 러닝",s:"월·수·금 20분 / 화·목 35분",req:[1,1,1,1,1,2,0]},
+  {k:"run",  n:"아침 러닝",s:"06:10 · 웨이트한 날 20분 / 그 외 35분",req:[1,1,1,1,1,2,0]},
   {k:"pro",  n:"아침 단백질 30g",s:"07:00 식사",req:[1,1,1,1,1,1,1]},
-  {k:"desk", n:"07:30 도착·장전 전략",s:"",req:[1,1,1,1,1,0,0]},
-  {k:"lift", n:"웨이트 60분",s:"17:00 시작 · 주 3회",req:[1,0,1,0,1,2,0]}
+  {k:"desk", n:"07:30 출근·장전 전략",s:"",req:[1,1,1,1,1,0,0]},
+  {k:"lift", n:"웨이트",s:"월·수·금 16:30 / 화·목 11:30",req:[2,2,2,2,2,2,0],cap:3},
+  {k:"gstk", n:"해외 주식 공부·정리",s:"20:00",req:[1,1,1,1,1,0,0]},
+  {k:"read", n:"21:00 독서",s:"",req:[1,1,1,1,1,1,1]}
 ];
 const METRICS=[
   {k:"wt",n:"체중",u:"kg",dir:0},
@@ -140,6 +191,7 @@ const METRICS=[
   {k:"dl",n:"데드리프트 1RM",u:"kg",dir:1},
   {k:"rd",n:"러닝 30분 거리",u:"km",dir:1}
 ];
+const TOTAL=ROWS.reduce((s,r)=>s+(r.cap||r.req.filter(v=>v===1).length),0);
 
 let cursor=monday(new Date()), week={}, anchors={}, wkey="";
 
@@ -148,20 +200,21 @@ function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0"
 function fmt(d){return (d.getMonth()+1)+"월 "+d.getDate()+"일";}
 function todayIdx(){return monday(new Date()).getTime()===cursor.getTime()?(new Date().getDay()+6)%7:-1;}
 function say(m){const e=document.getElementById("status");e.textContent=m||"";
-  if(m){clearTimeout(say.t);say.t=setTimeout(()=>e.textContent="",3000);}}
+  if(m){clearTimeout(say.t);say.t=setTimeout(()=>e.textContent="",3500);}}
 function read(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
 function write(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}
-  catch(e){say("저장 공간이 부족합니다. 기록을 내보낸 뒤 브라우저 저장소를 정리해 주세요.");return false;}}
+  catch(e){say("저장하지 못했습니다. 기록을 내보낸 뒤 브라우저 저장 공간을 정리해 주세요.");return false;}}
 
 function load(){wkey="routine:"+iso(cursor);week=read(wkey,{});anchors=read("routine:anchors",{});render();}
 function saveWeek(){write(wkey,week);}
 function saveAnchors(){write("routine:anchors",anchors);}
 function get(k,d){return !!(week[k]&&week[k][d]);}
+function count(k){let c=0;for(let d=0;d<7;d++)if(get(k,d))c++;return c;}
 function toggle(k,d){week[k]=week[k]||{};week[k][d]=!week[k][d];saveWeek();render();}
 
 function score(){let n=0;
   for(const r of ROWS){
-    if(r.k==="lift"){let c=0;for(let d=0;d<7;d++)if(get("lift",d))c++;n+=Math.min(c,3);continue;}
+    if(r.cap){n+=Math.min(count(r.k),r.cap);continue;}
     for(let d=0;d<7;d++)if(r.req[d]===1&&get(r.k,d))n++;
   } return n;}
 
@@ -178,7 +231,9 @@ function render(){
   for(const r of ROWS){
     const tr=document.createElement("tr");
     const td=document.createElement("td"); td.className="lbl";
-    td.innerHTML=r.n+(r.s?'<em>'+r.s+'</em>':''); tr.appendChild(td);
+    let sub=r.s;
+    if(r.cap) sub+=' · <b>'+Math.min(count(r.k),r.cap)+'/'+r.cap+'</b>';
+    td.innerHTML=r.n+(sub?'<em>'+sub+'</em>':''); tr.appendChild(td);
     for(let d=0;d<7;d++){
       const c=document.createElement("td");
       c.className="cell"+(d===ti?" todaycol":"");
